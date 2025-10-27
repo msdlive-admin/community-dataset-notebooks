@@ -1,8 +1,10 @@
-name: "PR #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}"
+name: "PR Notification"
 
 on:
   pull_request:
     types: [opened]
+
+run-name: "PR #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }} [by ${{ github.actor }}]"
 
 jobs:
   notify:
@@ -19,5 +21,5 @@ jobs:
 
       - name: Force Fail for Email Notification
         run: |
-          echo "This workflow failed intentionally to trigger a GitHub notification email since GitHub doesn't email about PRs made to repos by the repo owner."
+          echo "This workflow failed intentionally to trigger a GitHub notification email."
           exit 1
