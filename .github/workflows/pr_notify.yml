@@ -1,0 +1,23 @@
+name: PR Notification
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print PR Info
+        run: |
+          echo "🔔 New Pull Request Opened"
+          echo "Title: ${{ github.event.pull_request.title }}"
+          echo "Author: ${{ github.actor }}"
+          echo "URL: ${{ github.event.pull_request.html_url }}"
+          echo ""
+          echo "💡 This 'failure' is intentional — it's just a notification email."
+
+      - name: Force Fail for Email Notification
+        run: |
+          echo "This workflow failed intentionally to trigger a GitHub notification email."
+          exit 1
