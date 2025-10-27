@@ -1,0 +1,20 @@
+name: PR Notification
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USER }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "New PR Opened: ${{ github.event.pull_request.title }}"
+          body: "PR #${{ github.event.pull_request.number }} opened by ${{ github.actor }}\n${{ github.event.pull_request.html_url }}"
+          to: admin@msdlive.org
+          from: admin@msdlive.org
