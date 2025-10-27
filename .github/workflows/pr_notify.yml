@@ -19,5 +19,5 @@ jobs:
 
       - name: Force Fail for Email Notification
         run: |
-          echo "This workflow failed intentionally to trigger a GitHub notification email."
+          echo "This workflow failed intentionally to trigger a GitHub notification email since GitHub doesn't email about PRs made to repos by the repo owner."
           exit 1
